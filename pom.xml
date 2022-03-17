@@ -3,17 +3,13 @@
 	<groupId>com.project2</groupId>
 	<artifactId>project-2-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
-
 	<dependencies>
-
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.14</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>io.javalin</groupId>
@@ -51,8 +47,6 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.11.2</version>
 		</dependency>
-
-
 	</dependencies>
 	<build>
 		<plugins>
