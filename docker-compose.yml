@@ -5,12 +5,15 @@ services:
     ports:
       - "1010:5432"
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Yeshua7753
     volumes:
       - ./dbscript.sql:/docker-entrypoint-initdb.d/create_tables.sql
   javalin-backend-service:
     image: javalin-backend
     build: .
+    enviroment: 
+      - DB_HOST: my-postgres
     ports:
       - 9999:7070
     depends_on:
