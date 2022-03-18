@@ -12,8 +12,8 @@ services:
   javalin-backend-service:
     image: javalin-backend
     build: .
-    enviroment: 
-      - DB_HOST: my-postgres
+#    enviroment: 
+#      - DB_HOST: my-postgres
     ports:
       - 9999:7070
     depends_on:
