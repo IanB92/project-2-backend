@@ -34,8 +34,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				employee = new EmployeeTo(rs.getInt(1), rs.getString(2),
 						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
 						rs.getString(7), rs.getString(8));
-			}
-			}catch (SQLException e) {
+			
+			}}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			
@@ -110,9 +110,9 @@ Connection conn = DBUtil.getConnected();
 		try {
 			st = conn.createStatement();
 		 
-		String query = "INSERT INTO pending_details(employee_id, reimbursement_reason, reimbursement_amount, status) VALUES(" +reimbursement.getEmployeeId()  +  ",'"+ reimbursement.getReimbursementReason()
+		String query = "INSERT INTO pending_details(employee_id, reimbursement_reason, reimbursement_amount, status, image) VALUES(" +reimbursement.getEmployeeId()  +  ",'"+ reimbursement.getReimbursementReason()
 		+"'," + reimbursement.getReimbursementAmount()
-		+ ",'"+ reimbursement.getStatus()+"')";
+		+ ",'"+ reimbursement.getStatus() + "','"+ reimbursement.getImgUrl()+"')";
 		
 		int rs = st.executeUpdate(query);
 		}catch (SQLException e) {
@@ -137,7 +137,7 @@ Connection conn = DBUtil.getConnected();
 			
 			while (rs.next()) {
 				ReimbursementPojo pending = new ReimbursementPojo(rs.getInt(1),rs.getInt(2),
-						rs.getFloat(3),rs.getString(4),rs.getString(5),rs.getString(6));
+						rs.getFloat(3),rs.getString(4),rs.getString(5),rs.getString(6) ,rs.getString(7));
 				allPending.add(pending);
 			}
 			} catch (SQLException e) {
@@ -163,7 +163,7 @@ Connection conn = DBUtil.getConnected();
 			
 			while (rs.next()) {
 				ReimbursementPojo Resolved = new ReimbursementPojo(rs.getInt(1),rs.getInt(2),
-						rs.getFloat(3),rs.getString(4),rs.getString(5),rs.getString(6));
+						rs.getFloat(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
 				allResolved.add(Resolved);
 			}
 			} catch (SQLException e) {

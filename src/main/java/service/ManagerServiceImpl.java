@@ -4,10 +4,10 @@ import java.util.List;
 import dao.ManagerDao;
 import dao.ManagerDaoJDBCImpl;
 import exceptions.SystemException;
-import transferobjects.Denied;
+
 import transferobjects.ManagerPojo;
 import transferobjects.ReimbursementPojo;
-import transferobjects.ResolvedPojo;
+
 	
 	public class ManagerServiceImpl implements ManagerService {
 		
@@ -26,13 +26,13 @@ import transferobjects.ResolvedPojo;
 		}
 
 		@Override
-		public List<ResolvedPojo> fetchAllResolved() throws SystemException {
+		public List<ReimbursementPojo> fetchAllResolved() throws SystemException {
 			
 			return managerDao.fetchAllResolved();
 		}
 		
 		@Override
-		public List<Denied> fetchAllDenied() throws SystemException {
+		public List<ReimbursementPojo> fetchAllDenied() throws SystemException {
 			
 			return managerDao.fetchAllDenied();
 		}

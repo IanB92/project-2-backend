@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import exceptions.SystemException;
-import transferobjects.Denied;
+
 import transferobjects.ManagerPojo;
 import transferobjects.ReimbursementPojo;
-import transferobjects.ResolvedPojo;
+
 
 public class ManagerDaoJDBCImpl implements ManagerDao {
 
@@ -25,7 +25,7 @@ public class ManagerDaoJDBCImpl implements ManagerDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				ReimbursementPojo reimbursementPojo = new ReimbursementPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3),
-						rs.getString(4), rs.getString(5), rs.getString(6));
+						rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7));
 				allPending.add(reimbursementPojo);
 			}
 		} catch (SQLException e) {
@@ -34,18 +34,19 @@ public class ManagerDaoJDBCImpl implements ManagerDao {
 		return allPending;
 	}
 
+	
 	@Override
-	public List<Denied> fetchAllDenied() throws SystemException {
+	public List<ReimbursementPojo> fetchAllDenied() throws SystemException {
 
-		List<Denied> allDenied = new ArrayList<Denied>();
+		List<ReimbursementPojo> allDenied = new ArrayList<ReimbursementPojo>();
 		Connection conn = DBUtil.getConnected();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT * FROM denied_details";
+			String query = "SELECT * FROM reimbursement_details WHERE status='deny' OR status='Denied'";
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				Denied denied = new Denied(rs.getInt(1), rs.getInt(2), rs.getFloat(3),
-						rs.getString(4), rs.getString(5), rs.getString(6));
+				ReimbursementPojo denied = new ReimbursementPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3),
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 				allDenied.add(denied);
 			}
 		} catch (SQLException e) {
@@ -53,19 +54,20 @@ public class ManagerDaoJDBCImpl implements ManagerDao {
 		}
 		return allDenied;
 	}
-	// select
-	@Override
-	public List<ResolvedPojo> fetchAllResolved() throws SystemException {
+		
 
-		List<ResolvedPojo> allResolved = new ArrayList<ResolvedPojo>();
+	@Override
+	public List<ReimbursementPojo> fetchAllResolved() throws SystemException {
+
+		List<ReimbursementPojo> allResolved = new ArrayList<ReimbursementPojo>();
 		Connection conn = DBUtil.getConnected();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT * FROM reimbursement_details";
+			String query = "SELECT * FROM reimbursement_details WHERE status='approved' OR status='Approved'";
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				ResolvedPojo resolvedPojo = new ResolvedPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3),
-						rs.getString(4), rs.getString(5), rs.getString(6));
+				ReimbursementPojo resolvedPojo = new ReimbursementPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3),
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 				allResolved.add(resolvedPojo);
 			}
 		} catch (SQLException e) {
@@ -82,11 +84,11 @@ public class ManagerDaoJDBCImpl implements ManagerDao {
 		Connection conn = DBUtil.getConnected();
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT * FROM pending_details WHERE employee_id= " + employeeId + "UNION ALL SELECT * FROM denied_details WHERE employee_id= " + employeeId + "UNION ALL SELECT * FROM reimbursement_details WHERE employee_id=" + employeeId;
+			String query = "SELECT * FROM pending_details WHERE employee_id= " + employeeId + "UNION ALL SELECT * FROM reimbursement_details WHERE employee_id=" + employeeId;
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				ReimbursementPojo reimbursementPojo = new ReimbursementPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3), rs.getString(4),
-						rs.getString(5), rs.getString(6));
+						rs.getString(5), rs.getString(6), rs.getString(7));
 						allRequests.add(reimbursementPojo);
 			} 
 		} catch (SQLException e) {
@@ -104,7 +106,7 @@ public class ManagerDaoJDBCImpl implements ManagerDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				reimbursementPojo = new ReimbursementPojo(rs.getInt(1), rs.getInt(2), rs.getFloat(3), rs.getString(4),
-						rs.getString(5), rs.getString(6));
+						rs.getString(5), rs.getString(6), rs.getString(7));
 			} 
 		} catch (SQLException e) {
 			throw new SystemException();
@@ -186,7 +188,7 @@ return manager;
 				if(reimbursementPojo != null) {
 					
 					System.out.println("fetched recording with pending id");
-					String query1 = "INSERT INTO denied_details(employee_id, reimbursement_amount, reimbursement_reason, status)" +
+					String query1 = "INSERT INTO reimbursement_details(employee_id, reimbursement_amount, reimbursement_reason, status)" +
 									"VALUES("+reimbursementPojo.getEmployeeId()+","+reimbursementPojo.getReimbursementAmount()+",'"+reimbursementPojo.getReimbursementReason()+"','Denied')";
 				
 				int rows1 = stmt.executeUpdate(query1);

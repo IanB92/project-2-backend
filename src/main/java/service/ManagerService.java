@@ -3,17 +3,16 @@ package service;
 
 import java.util.List;
 import exceptions.SystemException;
-import transferobjects.Denied;
 import transferobjects.ManagerPojo;
 import transferobjects.ReimbursementPojo;
-import transferobjects.ResolvedPojo;
+
 public interface ManagerService {
 	
 	List<ReimbursementPojo> fetchAllPending() throws SystemException;
 
-	List<ResolvedPojo> fetchAllResolved() throws SystemException;
+	List<ReimbursementPojo> fetchAllResolved() throws SystemException;
 
-	List<Denied> fetchAllDenied() throws SystemException;
+	List<ReimbursementPojo> fetchAllDenied() throws SystemException;
 
 	ReimbursementPojo approve(int pendingId) throws SystemException;
 

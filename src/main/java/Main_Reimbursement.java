@@ -10,11 +10,11 @@ import service.EmployeeService;
 import service.EmployeeServiceImpl;
 import service.ManagerService;
 import service.ManagerServiceImpl;
-import transferobjects.Denied;
+
 import transferobjects.EmployeeTo;
 import transferobjects.ManagerPojo;
 import transferobjects.ReimbursementPojo;
-import transferobjects.ResolvedPojo;
+
 
 public class Main_Reimbursement {
 
@@ -74,7 +74,6 @@ public class Main_Reimbursement {
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Manager
 		
-		
 		myServer.post("/api/manager-login/", (ctx) -> {
 
 			ManagerPojo returnLogin = managerService.managerLogin(ctx.bodyAsClass(ManagerPojo.class));
@@ -90,14 +89,14 @@ public class Main_Reimbursement {
 
 		myServer.get("/api/employees/resolved", (ctx) -> {
 
-			List<ResolvedPojo> allInfo = managerService.fetchAllResolved();
+			List<ReimbursementPojo> allInfo = managerService.fetchAllResolved();
 			ctx.json(allInfo);
 
 		});
 
 		myServer.get("/api/employees/denied", (ctx) -> {
 
-			List<Denied> allInfo = managerService.fetchAllDenied();
+			List<ReimbursementPojo> allInfo = managerService.fetchAllDenied();
 			ctx.json(allInfo);
 
 		});

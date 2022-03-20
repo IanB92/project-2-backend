@@ -8,11 +8,25 @@ public class ReimbursementPojo {
 		private String reimbursementReason;
 		private String reimbursementDate;
 		private String status;
+		private String imgUrl;
+
+		
+		
+		
+		
+		public ReimbursementPojo(int reimbursementId, int employeeId, Float reimbursementAmount,
+				String reimbursementReason, String reimbursementDate, String status, String imgUrl) {
+			super();
+			this.reimbursementId = reimbursementId;
+			this.employeeId = employeeId;
+			this.reimbursementAmount = reimbursementAmount;
+			this.reimbursementReason = reimbursementReason;
+			this.reimbursementDate = reimbursementDate;
+			this.status = status;
+			this.imgUrl = imgUrl;
+		}
 
 
-		
-		
-		
 		public ReimbursementPojo() {
 			super();
 			// TODO Auto-generated constructor stub
@@ -79,24 +93,27 @@ public class ReimbursementPojo {
 		}
 
 
-		public ReimbursementPojo(int reimbursementId, int employeeId, Float reimbursementAmount, String reimbursementReason,
-		        String reimbursementDate, String status) {
-		    super();
-		    this.reimbursementId = reimbursementId;
-		    this.employeeId = employeeId;
-		    this.reimbursementAmount = reimbursementAmount;
-		    this.reimbursementReason = reimbursementReason;
-		    this.reimbursementDate = reimbursementDate;
-		    this.status = status;
+		public String getImgUrl() {
+			return imgUrl;
 		}
+
+
+		public void setImgUrl(String imgUrl) {
+			this.imgUrl = imgUrl;
+		}
+
+
 
 
 		@Override
 		public String toString() {
 			return "ReimbursementPojo [reimbursementId=" + reimbursementId + ", employeeId=" + employeeId
 					+ ", reimbursementAmount=" + reimbursementAmount + ", reimbursementReason=" + reimbursementReason
-					+ ", reimbursementDate=" + reimbursementDate + ", status=" + status + "]";
+					+ ", reimbursementDate=" + reimbursementDate + ", status=" + status + ", imgUrl=" + imgUrl + "]";
 		}
+
+
+	
 
 
 
