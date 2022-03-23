@@ -28,17 +28,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeTo employeeLogin(EmployeeTo employee) {
 		// TODO Auto-generated method stub
-			EmployeeEntity employeeEntity = new EmployeeEntity(
-					employee.getEmployeeId(), employee.getEmployeeFirstName(),
-					employee.getEmployeeLastName(), employee.getEmployeeAddress(),
-					employee.getEmployeePhoneNumber(), employee.getEmployeeEmail(),
-					employee.getEmployeeUserName(), employee.getEmployeePassword());
-		//	employeeDao.saveAndFlush(employeeEntity);
+		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeUsernameAndEmployeePassword(employee.getEmployeeUsername(), employee.getEmployeePassword());
+		if(optional.isPresent()) {
+			EmployeeEntity employeeEntity = optional.get();
 			employee = new EmployeeTo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeFirstName(),
 					employeeEntity.getEmployeeLastName(), employeeEntity.getEmployeeAddress(),
 					employeeEntity.getEmployeeContact(), employeeEntity.getEmployeeEmail(), 
-					employeeEntity.getEmployeeUserName(), employeeEntity.getEmployeePassword());
-		return employee;
+					employeeEntity.getEmployeeUsername(), employeeEntity.getEmployeePassword());
+		}
+			return employee;
 	}
 
 
@@ -53,26 +51,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 			EmployeeEntity employeeEntity = optional.get();
 			employee = new EmployeeTo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeFirstName(), employeeEntity.getEmployeeLastName(),
 					employeeEntity.getEmployeeAddress(), employeeEntity.getEmployeeContact(), employeeEntity.getEmployeeEmail(),
-					employeeEntity.getEmployeeUserName(), employeeEntity.getEmployeePassword());
+					employeeEntity.getEmployeeUsername(), employeeEntity.getEmployeePassword());
 		}
 
 		return employee;
 	}
 
 	@Override
-	public EmployeeTo employeeUpdate(EmployeeTo employeeTo) {
-		EmployeeEntity employeeEntity = new EmployeeEntity(
-				employeeTo.getEmployeeId(), employeeTo.getEmployeeFirstName(),
-				employeeTo.getEmployeeLastName(), employeeTo.getEmployeeAddress(),
-				employeeTo.getEmployeePhoneNumber(), employeeTo.getEmployeeEmail(),
-				employeeTo.getEmployeeUserName(), employeeTo.getEmployeePassword());
-		employeeDao.save(employeeEntity);
-		employeeTo = new EmployeeTo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeFirstName(),
-				employeeEntity.getEmployeeLastName(), employeeEntity.getEmployeeAddress(),
-				employeeEntity.getEmployeeContact(), employeeEntity.getEmployeeEmail(), 
-				employeeEntity.getEmployeeUserName(), employeeEntity.getEmployeePassword());
-	return employeeTo;
+	public EmployeeTo employeeUpdate(EmployeeTo employee) {
+		Optional<EmployeeEntity> optional = employeeDao.findById(employee.getEmployeeId());
+		if(optional.isPresent()) {
+			EmployeeEntity employeeEntity = optional.get();
+			employee = new EmployeeTo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeFirstName(),
+					employeeEntity.getEmployeeLastName(), employeeEntity.getEmployeeAddress(),
+					employeeEntity.getEmployeeContact(), employeeEntity.getEmployeeEmail(), 
+					employeeEntity.getEmployeeUsername(), employeeEntity.getEmployeePassword());
+		}
+			return employee;
 	}
-
-
+		
 }

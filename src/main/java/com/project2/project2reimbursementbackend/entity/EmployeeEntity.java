@@ -11,8 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="employee_details")
 public class EmployeeEntity {
 	@Id
@@ -35,7 +33,7 @@ public class EmployeeEntity {
 	private String employeeEmail;
 	
 	@Column(name="username")
-	private String employeeUserName;
+	private String employeeUsername;
 
 	@Column(name="password")
 	private String employeePassword;
@@ -47,7 +45,7 @@ public class EmployeeEntity {
 
 	
 	public EmployeeEntity(int employeeId, String employeeFirstName, String employeeLastName, String employeeAddress,
-			String employeeContact, String employeeEmail, String employeeUserName, String employeePassword) {
+			String employeeContact, String employeeEmail, String employeeUsername, String employeePassword) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeFirstName = employeeFirstName;
@@ -55,7 +53,7 @@ public class EmployeeEntity {
 		this.employeeAddress = employeeAddress;
 		this.employeeContact = employeeContact;
 		this.employeeEmail = employeeEmail;
-		this.employeeUserName = employeeUserName;
+		this.employeeUsername = employeeUsername;
 		this.employeePassword = employeePassword;
 	}
 
@@ -107,12 +105,12 @@ public class EmployeeEntity {
 		this.employeeEmail = employeeEmail;
 	}
 
-	public String getEmployeeUserName() {
-		return employeeUserName;
+	public String getEmployeeUsername() {
+		return employeeUsername;
 	}
 
-	public void setEmployeeUserName(String employeeUserName) {
-		this.employeeUserName = employeeUserName;
+	public void setEmployeeUsername(String employeeUsername) {
+		this.employeeUsername = employeeUsername;
 	}
 
 	public String getEmployeePassword() {
@@ -128,7 +126,7 @@ public class EmployeeEntity {
 		return "EmployeeEntity [employeeId=" + employeeId + ", employeeFirstName=" + employeeFirstName
 				+ ", employeeLastName=" + employeeLastName + ", employeeAddress=" + employeeAddress
 				+ ", employeePhoneNumber=" + employeeContact + ", employeeEmail=" + employeeEmail
-				+ ", employeeUserName=" + employeeUserName + ", employeePassword=" + employeePassword + "]";
+				+ ", employeeUserName=" + employeeUsername + ", employeePassword=" + employeePassword + "]";
 	}
 
 

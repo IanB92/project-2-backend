@@ -1,6 +1,7 @@
 package com.project2.project2reimbursementbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import com.project2.project2reimbursementbackend.service.EmployeeService;
 import com.project2.project2reimbursementbackend.to.EmployeeTo;
 
 @RestController // a combination of @Controller and @ResponseBody
+@CrossOrigin
 @RequestMapping("api")
 public class EmployeeController {
 	

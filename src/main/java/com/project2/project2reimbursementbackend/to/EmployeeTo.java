@@ -9,7 +9,7 @@ public class EmployeeTo {
 	private String employeeAddress;
 	private String employeeContact;	
 	private String employeeEmail;
-	private String employeeUserName;
+	private String employeeUsername;
 	private String employeePassword;
 
 	
@@ -19,7 +19,7 @@ public class EmployeeTo {
 	}
 	public EmployeeTo(int employeeId, String employeeFirstName, String employeeLastName, 
 			String employeeAddress, String employeeContact, String employeeEmail,
-			String employeeUserName, String employeePassword) {
+			String employeeUsername, String employeePassword) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeFirstName = employeeFirstName;
@@ -27,7 +27,7 @@ public class EmployeeTo {
 		this.employeeAddress = employeeAddress;
 		this.employeeContact = employeeContact;
 		this.employeeEmail = employeeEmail;
-		this.employeeUserName = employeeUserName;
+		this.employeeUsername = employeeUsername;
 		this.employeePassword = employeePassword;
 	}
 	public int getEmployeeId() {
@@ -66,11 +66,11 @@ public class EmployeeTo {
 	public void setEmployeeEmail(String employeeEmail) {
 		this.employeeEmail = employeeEmail;
 	}
-	public String getEmployeeUserName() {
-		return employeeUserName;
+	public String getEmployeeUsername() {
+		return employeeUsername;
 	}
-	public void setEmployeeUserName(String employeeUserName) {
-		this.employeeUserName = employeeUserName;
+	public void setEmployeeUsername(String employeeUsername) {
+		this.employeeUsername = employeeUsername;
 	}
 	public String getEmployeePassword() {
 		return employeePassword;
@@ -84,7 +84,7 @@ public class EmployeeTo {
 		return "EmployeeTo [employeeId=" + employeeId + ", employeeFirstName=" + employeeFirstName
 				+ ", employeeLastName=" + employeeLastName + ", employeeAddress=" + employeeAddress
 				+ ", employeePhoneNumber=" + employeeContact + ", employeeEmail=" + employeeEmail
-				+ ", employeeUserName=" + employeeUserName + ", employeePassword=" + employeePassword +"]";
+				+ ", employeeUsername=" + employeeUsername + ", employeePassword=" + employeePassword +"]";
 	}
 
 	

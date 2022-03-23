@@ -15,7 +15,7 @@ public class ManagerEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="employee_id")
+	@Column(name="manager_id")
 	private int managerId;
 	
 	@Column(name="first_name")
@@ -34,7 +34,7 @@ public class ManagerEntity {
 	private String email;
 	
 	@Column(name="username")
-	private String userName;
+	private String username;
 
 	@Column(name="password")
 	private String password;
@@ -45,7 +45,7 @@ public class ManagerEntity {
 	}
 
 	public ManagerEntity(int managerId, String firstName, String lastName, String address, String contact, String email,
-			String userName, String password) {
+			String username, String password) {
 		super();
 		this.managerId = managerId;
 		this.firstName = firstName;
@@ -53,7 +53,7 @@ public class ManagerEntity {
 		this.address = address;
 		this.contact = contact;
 		this.email = email;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 	}
 
@@ -106,11 +106,11 @@ public class ManagerEntity {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -124,7 +124,7 @@ public class ManagerEntity {
 	@Override
 	public String toString() {
 		return "ManagerEntity [managerId=" + managerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", address=" + address + ", contact=" + contact + ", email=" + email + ", userName=" + userName
+				+ ", address=" + address + ", contact=" + contact + ", email=" + email + ", userName=" + username
 				+ ", password=" + password + "]";
 	}
 

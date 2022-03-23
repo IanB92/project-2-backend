@@ -8,7 +8,7 @@ public class ManagerPojo {
 	private String address;
 	private String contact;
 	private String email;
-	private String userName;
+	private String username;
 	private String password;
 
 	
@@ -20,7 +20,7 @@ public class ManagerPojo {
 
 
 	public ManagerPojo(int managerId, String firstName, String lastName, String address, String contact, String email,
-			String userName, String password) {
+			String username, String password) {
 		super();
 		this.managerId = managerId;
 		this.firstName = firstName;
@@ -28,7 +28,7 @@ public class ManagerPojo {
 		this.address = address;
 		this.contact = contact;
 		this.email = email;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 
 	}
@@ -94,13 +94,13 @@ public class ManagerPojo {
 	}
 
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
@@ -117,7 +117,7 @@ public class ManagerPojo {
 	@Override
 	public String toString() {
 		return "ManagerPojo [managerId=" + managerId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", address=" + address + ", contact=" + contact + ", email=" + email + ", userName=" + userName
+				+ ", address=" + address + ", contact=" + contact + ", email=" + email + ", userName=" + username
 				+ ", password=" + password + "]";
 	}
 

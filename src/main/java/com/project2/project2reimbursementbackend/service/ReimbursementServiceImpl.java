@@ -133,14 +133,16 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 		// TODO Auto-generated method stub
 		Optional<ReimbursementEntity> optional = reimbursementDao.findById(reimId);
 		ReimbursementPojo reimbursementPojo = null;
-		reimbursementPojo.setStatus("Approved");
-		reimbursementPojo.setState("Resolved");
+		
 		if(optional.isPresent()) {
 			ReimbursementEntity reimbursementEntity = optional.get();
+			reimbursementEntity.setStatus("Approved");
+			reimbursementEntity.setState("Resolved");
 			reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
 					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+			reimbursementDao.save(reimbursementEntity);
 		}
 		return reimbursementPojo;
 	}
@@ -150,14 +152,15 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 	public ReimbursementPojo deny(int reimId) {
 		Optional<ReimbursementEntity> optional = reimbursementDao.findById(reimId);
 		ReimbursementPojo reimbursementPojo = null;
-		reimbursementPojo.setStatus("Denied");
-		reimbursementPojo.setState("Resolved");
 		if(optional.isPresent()) {
 			ReimbursementEntity reimbursementEntity = optional.get();
+			reimbursementEntity.setStatus("Denied");
+			reimbursementEntity.setState("Resolved");
 			reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
 					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+			reimbursementDao.save(reimbursementEntity);
 		}
 		return reimbursementPojo;
 	}
