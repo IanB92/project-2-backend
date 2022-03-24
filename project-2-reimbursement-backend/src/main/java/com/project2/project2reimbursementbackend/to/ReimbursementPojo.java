@@ -1,6 +1,7 @@
 package com.project2.project2reimbursementbackend.to;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class ReimbursementPojo {
 	
@@ -11,13 +12,13 @@ public class ReimbursementPojo {
 		private String reimbursementReason;
 		private Date  reimbursementDate;
 		private String status;
-		private String imgUrl;
+
 		public ReimbursementPojo() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 		public ReimbursementPojo(int reimbursementId, int employeeId, String state, Float reimbursementAmount,
-				String reimbursementReason, Date reimbursementDate, String status, String imgUrl) {
+				String reimbursementReason, Date reimbursementDate, String status) {
 			super();
 			this.reimbursementId = reimbursementId;
 			this.employeeId = employeeId;
@@ -26,7 +27,7 @@ public class ReimbursementPojo {
 			this.reimbursementReason = reimbursementReason;
 			this.reimbursementDate = reimbursementDate;
 			this.status = status;
-			this.imgUrl = imgUrl;
+
 		}
 		public int getReimbursementId() {
 			return reimbursementId;
@@ -70,18 +71,35 @@ public class ReimbursementPojo {
 		public void setStatus(String status) {
 			this.status = status;
 		}
-		public String getImgUrl() {
-			return imgUrl;
-		}
-		public void setImgUrl(String imgUrl) {
-			this.imgUrl = imgUrl;
-		}
+	
 		@Override
 		public String toString() {
 			return "ReimbursementPojo [reimbursementId=" + reimbursementId + ", employeeId=" + employeeId + ", state="
 					+ state + ", reimbursementAmount=" + reimbursementAmount + ", reimbursementReason="
 					+ reimbursementReason + ", reimbursementDate=" + reimbursementDate + ", status=" + status
-					+ ", imgUrl=" + imgUrl + "]";
+				 + "]";
 		}
+		@Override
+		public int hashCode() {
+			return Objects.hash(employeeId, reimbursementAmount, reimbursementDate, reimbursementId,
+					reimbursementReason, state, status);
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ReimbursementPojo other = (ReimbursementPojo) obj;
+			return employeeId == other.employeeId && Objects.equals(reimbursementAmount, other.reimbursementAmount)
+					&& Objects.equals(reimbursementDate, other.reimbursementDate)
+					&& reimbursementId == other.reimbursementId
+					&& Objects.equals(reimbursementReason, other.reimbursementReason)
+					&& Objects.equals(state, other.state) && Objects.equals(status, other.status);
+		}
+		
+		
 	
 }

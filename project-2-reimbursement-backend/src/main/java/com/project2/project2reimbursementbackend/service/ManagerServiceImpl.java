@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project2.project2reimbursementbackend.dao.ManagerDao;
 import com.project2.project2reimbursementbackend.entity.EmployeeEntity;
 import com.project2.project2reimbursementbackend.entity.ManagerEntity;
-
+import com.project2.project2reimbursementbackend.exception.SystemException;
 import com.project2.project2reimbursementbackend.to.ManagerPojo;
 
 	@Service
@@ -20,7 +20,7 @@ import com.project2.project2reimbursementbackend.to.ManagerPojo;
 		ManagerDao managerDao;
 
 		@Override
-		public ManagerPojo managerLogin(ManagerPojo manager) {
+		public ManagerPojo managerLogin(ManagerPojo manager){
 			Optional<ManagerEntity> optional = managerDao.findByUsernameAndPassword(manager.getUsername(), manager.getPassword());
 			if(optional.isPresent()) {
 				ManagerEntity managerEntity = optional.get();

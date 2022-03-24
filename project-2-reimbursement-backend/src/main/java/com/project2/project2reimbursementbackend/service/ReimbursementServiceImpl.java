@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project2.project2reimbursementbackend.dao.ReimbursementDao;
 import com.project2.project2reimbursementbackend.entity.ReimbursementEntity;
+import com.project2.project2reimbursementbackend.exception.SystemException;
 import com.project2.project2reimbursementbackend.to.ReimbursementPojo;
 import lombok.extern.slf4j.Slf4j;
 @Service
@@ -25,7 +26,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 		ReimbursementEntity reimbursementEntity = new ReimbursementEntity(
 				reimbursement.getReimbursementId(), reimbursement.getEmployeeId(),reimbursement.getState(),
 				reimbursement.getReimbursementAmount(), reimbursement.getReimbursementReason(),
-				reimbursement.getReimbursementDate(), reimbursement.getStatus(), reimbursement.getImgUrl());
+				reimbursement.getReimbursementDate(), reimbursement.getStatus());
 		reimbursementDao.save(reimbursementEntity);
 		// TODO Auto-generated method stub
 		return reimbursement;
@@ -40,7 +41,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(),  reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			viewPending.add(reimbursementPojo);
 		}
 		return viewPending;
@@ -55,7 +56,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			viewPending.add(reimbursementPojo);
 		}
 		return viewPending;
@@ -73,7 +74,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			allPending.add(reimbursementPojo);
 		}
 		return allPending;
@@ -82,7 +83,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 	@Override
 	// SELECT * FROM reimbursement_details WHERE status='approved' OR status='Approved'";
 	
-	public List<ReimbursementPojo> fetchAllApproved() {
+	public List<ReimbursementPojo> fetchAllApproved(){
 		// TODO Auto-generated method stub
 		List<ReimbursementPojo> allResolved = new ArrayList<ReimbursementPojo>(); 
 		List<ReimbursementEntity>viewResolvedEntity = reimbursementDao.findAllByStatus("Approved");
@@ -90,7 +91,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(),  reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			allResolved.add(reimbursementPojo);
 		}
 		return allResolved;
@@ -98,7 +99,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 
 	@Override
 	//SELECT * FROM reimbursement_details WHERE status='deny' OR status='Denied'";
-	public List<ReimbursementPojo> fetchAllDenied() {
+	public List<ReimbursementPojo> fetchAllDenied(){
 		// TODO Auto-generated method stub
 		List<ReimbursementPojo> allDenied = new ArrayList<ReimbursementPojo>(); 
 		List<ReimbursementEntity>allDeniedEntity = reimbursementDao.findAllByStatus("Denied");
@@ -106,10 +107,10 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			allDenied.add(reimbursementPojo);
 		}
-		return null;
+		return allDenied;
 	}
 
 
@@ -122,14 +123,14 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			ReimbursementPojo reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			allReimbursement.add(reimbursementPojo);
 		}
 		return allReimbursement;
 	}
 	@Override
 	//Update reimbursement_details SET status ='Approved' WHERE  reimbursement_id = reimbursement_Id)";
-	public ReimbursementPojo approve(int reimId) {
+	public ReimbursementPojo approve(int reimId){
 		// TODO Auto-generated method stub
 		Optional<ReimbursementEntity> optional = reimbursementDao.findById(reimId);
 		ReimbursementPojo reimbursementPojo = null;
@@ -141,7 +142,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			reimbursementDao.save(reimbursementEntity);
 		}
 		return reimbursementPojo;
@@ -159,7 +160,7 @@ public class ReimbursementServiceImpl implements ReimbursementService{
 			reimbursementPojo = new ReimbursementPojo(reimbursementEntity.getReimbursementId(),
 					reimbursementEntity.getEmployeeId(), reimbursementEntity.getState(), reimbursementEntity.getReimbursement_amount(), 
 					reimbursementEntity.getReimbursement_reason(), reimbursementEntity.getReimbursementDate(), 
-					reimbursementEntity.getStatus(), reimbursementEntity.getImgUrl());
+					reimbursementEntity.getStatus());
 			reimbursementDao.save(reimbursementEntity);
 		}
 		return reimbursementPojo;

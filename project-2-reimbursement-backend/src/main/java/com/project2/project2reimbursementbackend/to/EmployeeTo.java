@@ -1,5 +1,7 @@
 package com.project2.project2reimbursementbackend.to;
 
+import java.util.Objects;
+
 public class EmployeeTo {
 	
 	
@@ -85,6 +87,28 @@ public class EmployeeTo {
 				+ ", employeeLastName=" + employeeLastName + ", employeeAddress=" + employeeAddress
 				+ ", employeePhoneNumber=" + employeeContact + ", employeeEmail=" + employeeEmail
 				+ ", employeeUsername=" + employeeUsername + ", employeePassword=" + employeePassword +"]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(employeeAddress, employeeContact, employeeEmail, employeeFirstName, employeeId,
+				employeeLastName, employeePassword, employeeUsername);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EmployeeTo other = (EmployeeTo) obj;
+		return Objects.equals(employeeAddress, other.employeeAddress)
+				&& Objects.equals(employeeContact, other.employeeContact)
+				&& Objects.equals(employeeEmail, other.employeeEmail)
+				&& Objects.equals(employeeFirstName, other.employeeFirstName) && employeeId == other.employeeId
+				&& Objects.equals(employeeLastName, other.employeeLastName)
+				&& Objects.equals(employeePassword, other.employeePassword)
+				&& Objects.equals(employeeUsername, other.employeeUsername);
 	}
 
 	

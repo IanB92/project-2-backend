@@ -1,5 +1,7 @@
 package com.project2.project2reimbursementbackend.to;
 
+import java.util.Objects;
+
 public class ManagerPojo {
 	
 	private int managerId;
@@ -119,6 +121,28 @@ public class ManagerPojo {
 		return "ManagerPojo [managerId=" + managerId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", address=" + address + ", contact=" + contact + ", email=" + email + ", userName=" + username
 				+ ", password=" + password + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, contact, email, firstName, lastName, managerId, password, username);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ManagerPojo other = (ManagerPojo) obj;
+		return Objects.equals(address, other.address) && Objects.equals(contact, other.contact)
+				&& Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && managerId == other.managerId
+				&& Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
 
 	

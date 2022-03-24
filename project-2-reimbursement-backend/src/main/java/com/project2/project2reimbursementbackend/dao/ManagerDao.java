@@ -17,6 +17,8 @@ public interface ManagerDao extends JpaRepository<ManagerEntity, Integer>{
 	Optional<ManagerEntity> findByUsernameAndPassword(String username, String password);
 
 
+
+
 	
 
 

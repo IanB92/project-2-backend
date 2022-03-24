@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.project2.project2reimbursementbackend.entity.ReimbursementEntity;
+import com.project2.project2reimbursementbackend.exception.SystemException;
 
 public interface ReimbursementDao extends JpaRepository<ReimbursementEntity, Integer>{
 

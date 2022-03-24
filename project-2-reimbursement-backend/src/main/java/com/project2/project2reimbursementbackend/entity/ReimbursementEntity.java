@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -37,24 +42,21 @@ public class ReimbursementEntity {
 	@Column(name="reimbursement_reason")
 	private String reimbursement_reason;
 	
-	@Temporal(TemporalType.TIMESTAMP) 
+
+	@CreationTimestamp// this will create dates omg
 	@Column(name="reimbursement_date")
 	private Date reimbursementDate;
 	
 	@Column(name="status")
 	private String status;
 	
-
-	@Column(name="image")
-	private String imgUrl;
-
 	public ReimbursementEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public ReimbursementEntity(int reimbursementId, int employeeId, String state, float reimbursement_amount,
-			String reimbursement_reason, Date reimbursementDate, String status, String imgUrl) {
+			String reimbursement_reason, Date reimbursementDate, String status) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.employeeId = employeeId;
@@ -63,7 +65,7 @@ public class ReimbursementEntity {
 		this.reimbursement_reason = reimbursement_reason;
 		this.reimbursementDate = reimbursementDate;
 		this.status = status;
-		this.imgUrl = imgUrl;
+
 	}
 
 	public int getReimbursementId() {
@@ -122,26 +124,14 @@ public class ReimbursementEntity {
 		this.status = status;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "ReimbursementEntity [reimbursementId=" + reimbursementId + ", employeeId=" + employeeId + ", state="
 				+ state + ", reimbursement_amount=" + reimbursement_amount + ", reimbursement_reason="
-				+ reimbursement_reason + ", reimbursementDate=" + reimbursementDate + ", status=" + status + ", imgUrl="
-				+ imgUrl + "]";
+				+ reimbursement_reason + ", reimbursementDate=" + reimbursementDate + ", status=" + status +  "]";
 	}
 
-	
-	
-	 
-	
-	
 	
 }

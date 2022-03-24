@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project2.project2reimbursementbackend.dao.EmployeeDao;
 import com.project2.project2reimbursementbackend.entity.EmployeeEntity;
-
+import com.project2.project2reimbursementbackend.exception.SystemException;
 import com.project2.project2reimbursementbackend.to.EmployeeTo;
 
 
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 //	}
 
 	@Override
-	public EmployeeTo employeeLogin(EmployeeTo employee) {
+	public EmployeeTo employeeLogin(EmployeeTo employee){
 		// TODO Auto-generated method stub
 		Optional<EmployeeEntity> optional = employeeDao.findByEmployeeUsernameAndEmployeePassword(employee.getEmployeeUsername(), employee.getEmployeePassword());
 		if(optional.isPresent()) {
@@ -58,15 +58,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeTo employeeUpdate(EmployeeTo employee) {
-		Optional<EmployeeEntity> optional = employeeDao.findById(employee.getEmployeeId());
-		if(optional.isPresent()) {
-			EmployeeEntity employeeEntity = optional.get();
+	public EmployeeTo employeeUpdate(EmployeeTo employee){
+		EmployeeEntity employeeEntity = new EmployeeEntity(employee.getEmployeeId(), employee.getEmployeeFirstName(), employee.getEmployeeLastName(),
+				employee.getEmployeeAddress(), employee.getEmployeePhoneNumber(), employee.getEmployeeEmail(), 
+				employee.getEmployeeUsername(), employee.getEmployeePassword());
+			employeeDao.save(employeeEntity);
 			employee = new EmployeeTo(employeeEntity.getEmployeeId(), employeeEntity.getEmployeeFirstName(),
 					employeeEntity.getEmployeeLastName(), employeeEntity.getEmployeeAddress(),
 					employeeEntity.getEmployeeContact(), employeeEntity.getEmployeeEmail(), 
 					employeeEntity.getEmployeeUsername(), employeeEntity.getEmployeePassword());
-		}
 			return employee;
 	}
 		

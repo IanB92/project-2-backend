@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project2.project2reimbursementbackend.exception.SystemException;
 import com.project2.project2reimbursementbackend.service.EmployeeService;
 import com.project2.project2reimbursementbackend.to.EmployeeTo;
 
@@ -23,17 +24,17 @@ public class EmployeeController {
 	
 	//
 	@PostMapping("/employee-login")
-	EmployeeTo employeeLogin(@RequestBody EmployeeTo employee) {
+	EmployeeTo employeeLogin(@RequestBody EmployeeTo employee)throws SystemException{
 		return  employeeService.employeeLogin(employee);
 	}
 	//http://127.0.0.1:4444
 	@GetMapping("/employee-info/{employeeId}")
-	EmployeeTo employeeInfo(@PathVariable("employeeId") int eid) {
+	EmployeeTo employeeInfo(@PathVariable("employeeId") int eid)throws SystemException {
 		return employeeService.employeeInfo(eid);
 	}
 	
 	@PutMapping("/employee-update")
-	EmployeeTo employeeUpdate(@RequestBody EmployeeTo employee) {
+	EmployeeTo employeeUpdate(@RequestBody EmployeeTo employee)throws SystemException {
 		return employeeService.employeeUpdate(employee);
 	}
 	
